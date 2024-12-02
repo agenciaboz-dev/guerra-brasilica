@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://c7j8ilwj8i5vc"]
+[gd_scene load_steps=24 format=3 uid="uid://c7j8ilwj8i5vc"]
 
 [ext_resource type="Script" path="res://movable_object.gd" id="1_x0m7u"]
 [ext_resource type="Texture2D" uid="uid://dvnn742bnlni5" path="res://assets/spritesheet.png" id="2_rkvrf"]
@@ -15,7 +15,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [5]
+"values": [2]
 }
 
 [sub_resource type="Animation" id="Animation_i7u54"]
@@ -133,6 +133,18 @@ tracks/0/keys = {
 [sub_resource type="Animation" id="Animation_jm447"]
 resource_name = "idle_up_right"
 length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Anim:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [5]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_biebu"]
 _data = {
@@ -195,18 +207,18 @@ states/Start/position = Vector2(332, 100)
 states/idle/node = SubResource("AnimationNodeBlendSpace2D_uw3c4")
 states/idle/position = Vector2(606, 100)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i30r3"]
+size = Vector2(20, 36)
+
 [node name="Character" type="CharacterBody2D"]
 z_index = 3
 y_sort_enabled = true
-position = Vector2(905, 435)
 script = ExtResource("1_x0m7u")
 
 [node name="Anim" type="Sprite2D" parent="."]
-position = Vector2(-3, -85.5)
-scale = Vector2(1, 0.929688)
 texture = ExtResource("2_rkvrf")
 hframes = 8
-frame = 5
+frame = 2
 
 [node name="AnimPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -216,4 +228,8 @@ libraries = {
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeStateMachine_rx51b")
 anim_player = NodePath("../AnimPlayer")
-parameters/idle/blend_position = Vector2(0.0350263, 0.861702)
+parameters/idle/blend_position = Vector2(-0.998298, 0.992983)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 8)
+shape = SubResource("RectangleShape2D_i30r3")
